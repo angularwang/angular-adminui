@@ -1,0 +1,18 @@
+﻿// Easy pie chart
+.easy-pie-chart-widget {
+    text-align: center;
+    h3 {
+        text-align: left;
+    }
+    .box {
+        text-align: center;
+    }
+    .easy-pie-chart {
+        display: inline-block;
+        margin: 10px auto;
+        .caption {
+            margin-top: 10px;
+            text-align: center;
+        }
+    }
+}
