@@ -54,7 +54,11 @@ angular.module('ntd.directives').directive('notice', [
         scope.$watch(function() {
           return $location.path();
         }, function() {
-          element.hide();
+          var flag = $('.flash-message', element).hasClass('alert') ||
+                     $('.flash-message', element).hasClass('alert-error');
+          if (flag) {
+            element.fadeOut();
+          }
         });
       }
     };
