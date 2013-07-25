@@ -1,11 +1,13 @@
-// Images path 
-$iconSpritePath:          "../images/glyphicons-halflings.png";
-$iconWhiteSpritePath:     "../images/glyphicons-halflings-white.png";
+// Icon images path 
+$iconSpritePath:          "../images/glyphicons-halflings.png" !default;
+$iconWhiteSpritePath:     "../images/glyphicons-halflings-white.png" !default;
 
 $bodyBackground:  #fdfdfd;
 $textColor:       #666;
+$navbarInverseBackgroundHighlight: #3d3d3d;
+$navbarInverseBackground: #2d2d2d;
+$navbarInverseBorder: #353535;
      
-
 $sansFontFamily:  "Helvetica Neue", Helvetica, "microsoft yahei", Arial, sans-serif !default;
 
 @import "compass_twitter_bootstrap";

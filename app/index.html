@@ -11,14 +11,18 @@
     <meta name="viewport" content="width=device-width">
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
     
-    <!-- build:css({.tmp, app}) styles/main.css -->
+    <!-- build:css({.tmp, app, components}) styles/angular-adminui-unzip.css -->
     <link rel="stylesheet" href="styles/ntd-admin-ui.css">
+    <!-- endbuild -->
+
+    <!-- build:css styles/components.css -->
     <link rel="stylesheet" href="components/bootstrap-datepicker/css/datepicker.css" />
     <link rel="stylesheet" href="components/bootstrap-timepicker/css/bootstrap-timepicker.css" />
     <link rel="stylesheet" href="components/jquery.easy-pie-chart/jquery.easy-pie-chart.css" />
+    <link rel="stylesheet" href="components/nanoscroller/bin/css/nanoscroller.css" />
     <!-- endbuild -->
 
-    <!-- build:css({.tmp, app}) styles/example.css -->
+    <!-- build:css({.tmp, app}) styles/docs.css -->
     <link rel="stylesheet" href="styles/example.css">
     <link rel="stylesheet" href="styles/prettify.css" />
     <!-- endbuild -->
@@ -165,10 +169,9 @@
 
     
     
-    <!-- build:js scripts/components.js -->
+    <!-- build:js scripts/angular-adminui-components.js -->
     <script src="components/jquery/jquery.min.js"></script>
-    <script src="scripts/vendor/angular.min.js"></script>
-    <!-- script src="components/angular/angular.js"></script -->
+    <script src="components/angular/angular.js"></script>
     <script src="components/angular-resource/angular-resource.js"></script>
     <script src="components/angular-cookies/angular-cookies.js"></script>
     <script src="components/angular-sanitize/angular-sanitize.js"></script>
@@ -177,27 +180,23 @@
     <script src="components/jquery.easy-pie-chart/jquery.easy-pie-chart.js"></script>
     <script src="components/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
     <script src="components/bootstrap-timepicker/js/bootstrap-timepicker.js"></script>
+    <script src="components/nanoscroller/bin/javascripts/jquery.nanoscroller.min.js"></script>
     <script src="components/footable/js/footable.js"></script>
     <script src="components/d3/d3.js"></script>
     <script src="components/angular-ui-select2/src/select2.js"></script>
-    <script src="components/jquery-slimScroll/jquery.slimscroll.min.js"></script>
+    <script src="components/jquery.slimscroll/jquery.slimscroll.min.js"></script>
+    <script src="components/bootstrap/docs/assets/js/bootstrap.min.js"></script>
     <script src="scripts/vendor/angular-bootstrap-prettify.min.js"></script>
-    <script src="scripts/vendor/bootstrap.min.js"></script>
-
-    <script src="scripts/app.js"></script>
-
-    <!-- services -->
-    <!-- build:js scripts/adminui.services.min.js -->
-    <script src="scripts/services/services.js"></script>
     <!-- endbuild -->
 
-    <!-- controller -->
-    <!-- build:js scripts/adminui.controller.min.js -->
+    <!-- build:js scripts/angular-adminui-main.js -->
+    <script src="scripts/app.js"></script>
+    <script src="scripts/services/services.js"></script>
     <script src="scripts/controllers/main.js"></script>
     <!-- endbuild -->
 
-    <!-- directives -->
-    <!-- build:js scripts/adminui.min.js -->
+
+    <!-- build:js scripts/angular-adminui.js -->
     <script src="scripts/directives/ntd-ui-directive.js"></script>
     <script src="scripts/directives/ntd-notice.js"></script>
     <script src="scripts/directives/ntd-advance-filter.js"></script>

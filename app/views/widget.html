@@ -3,6 +3,7 @@
         Admin UI 组件
     </h1>
 </div>
+
 <h3>Nav bar</h3>
 <p>通过<code>nav-bar</code>属性来调用， 通过<code>data-match-route="正则表达式"</code>来匹配路径</p>
 <div nav-bar>
@@ -31,11 +32,17 @@
     <li>slimScrollHeight</li>
     <li>slimScrollPosition = left | right</li>
 </ul>
-<div slim-scroll slim-scroll-width="400" slim-scroll-height="100">
+<div slim-scroll slim-scroll-width="400" slim-scroll-height="100" style="margin-bottom:15px;">
     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eveniet, quod, aspernatur magnam amet laboriosam consectetur possimus illum velit eius facere praesentium doloribus inventore corrupti nisi reiciendis asperiores molestiae optio enim?</p>
     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eveniet, quod, aspernatur magnam amet laboriosam consectetur possimus illum velit eius facere praesentium doloribus inventore corrupti nisi reiciendis asperiores molestiae optio enim?</p>
     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eveniet, quod, aspernatur magnam amet laboriosam consectetur possimus illum velit eius facere praesentium doloribus inventore corrupti nisi reiciendis asperiores molestiae optio enim?</p>
 </div>
+<pre class="prettyprint lineums">
+&lt;div slim-scroll slim-scroll-width=&quot;400&quot; slim-scroll-height=&quot;100&quot;&gt;
+    &lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eveniet, quod, aspernatur magnam amet laboriosam consectetur possimus illum velit eius facere praesentium doloribus inventore corrupti nisi reiciendis asperiores molestiae optio enim?&lt;/p&gt;
+    ... ...
+&lt;/div&gt;
+</pre>
 
 <h3>Confirm button</h3>
 <p>为标签添加<code>confirm-button</code>属性, </p>
@@ -322,3 +329,29 @@ $scope.dptList = {{dptList|json}}
 <div class="well" ng-controller="PieCtrl">
     $scope.ageData = {{ ageData  | json }}
 </div>
+
+<h3>时间日期</h3>
+<div class="control-group input-append">
+    <input type="text" class="input-small" ng-model="datepicker.date" placeholder="时间" data-date-format="yyyy/mm/dd" date-picker>
+    <button type="button" class="btn" data-toggle="datepicker"><i class="icon-calendar"></i></button>
+</div>
+<p>日期选择器用 <code>date-picker</code> 属性绑定到 input 元素上.</p>
+<pre class="prettyprint linenums">
+    &lt;div class=&quot;control-group input-append&quot;&gt;
+        &lt;input type=&quot;text&quot; class=&quot;input-small&quot; ng-model=&quot;datepicker.date&quot; placeholder=&quot;&#26102;&#38388;&quot; data-date-format=&quot;yyyy/mm/dd&quot; date-picker&gt;
+        &lt;button type=&quot;button&quot; class=&quot;btn&quot; data-toggle=&quot;datepicker&quot;&gt;&lt;i class=&quot;icon-calendar&quot;&gt;&lt;/i&gt;&lt;/button&gt;
+    &lt;/div&gt;
+</pre>
+<hr>
+<div class="control-group input-append">
+  <input type="text" class="input-small" ng-model="timepicker.time" time-picker>
+  <button type="button" class="btn" data-toggle="timepicker"><i class="icon-time"></i></buttoni>
+</div>
+<p>选择器用 <code>time-picker</code> 属性绑定到 input 元素上.</p>
+<pre class="prettyprint linenums">
+    &lt;div class=&quot;control-group input-append&quot;&gt;
+      &lt;input type=&quot;text&quot; ng-model=&quot;timepicker.time&quot; time-picker&gt;
+      &lt;button type=&quot;button&quot; class=&quot;btn&quot; data-toggle=&quot;timepicker&quot;&gt;&lt;i class=&quot;icon-time&quot;&gt;&lt;/i&gt;&lt;/buttoni&gt;
+    &lt;/div&gt;
+</pre>
+<hr>

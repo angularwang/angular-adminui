@@ -17,7 +17,8 @@ angular.module('ntd.directives').directive('loadingButton', [function() {
                     element.html(element.data('loading-text'));
                 } else {
                     if (!attrs.hasOwnProperty('ngDisabled')) {
-                        element.removeClass('disabled').removeAttr('disabled');
+                        element.removeClass('disabled')
+                               .removeAttr('disabled');
                     }
 
                     element.html(element.data('resetText'));

@@ -20,7 +20,7 @@ angular.module('ntd.directives').directive('confirmButton', [
                   '<button type=\"button\" class=\"confirmbutton-yes btn btn-primary\">' +
                     yep +
                   '</button>\n' +
-                  '<button class=\"confirmbutton-no btn\">' +
+                  '<button type="button" class=\"confirmbutton-no btn\">' +
                     nope +
                   '</button>' +
                 '</div>';

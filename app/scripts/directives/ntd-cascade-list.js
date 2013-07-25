@@ -71,7 +71,7 @@ angular.module('ntd.directives').directive('cascadeList', ['$parse',
 
     function setValue(val) {
       $scope.ngModel = val;
-      $scope.$apply();
+      //$scope.$apply();
     }
 
     function initList(val) {

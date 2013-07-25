@@ -8,7 +8,7 @@ module.exports = function (grunt) {
   // load all grunt tasks
   require('matchdep').filterDev('grunt-*').forEach(grunt.loadNpmTasks);
 
-  // configurable paths
+  // configurable paths`
   var yeomanConfig = {
     app: 'app',
     dist: 'dist'
@@ -145,9 +145,9 @@ module.exports = function (grunt) {
     },
     compass: {
       options: {
+        // httpPath: '' ,
         sassDir: '<%= yeoman.app %>/styles',
         cssDir: '.tmp/styles',
-        imagesDir: '../images',
         javascriptsDir: '<%= yeoman.app %>/scripts',
         fontsDir: '<%= yeoman.app %>/styles/fonts',
         importPath: '<%= yeoman.app %>/components',
@@ -162,12 +162,12 @@ module.exports = function (grunt) {
     },
     concat: {
       dist: {
-        files: {
-          '<%= yeoman.dist %>/scripts/scripts.js': [
-            '.tmp/scripts/{,*/}*.js',
-            '<%= yeoman.app %>/scripts/{,*/}*.js'
-          ]
-        }
+        // files: {
+        //   '<%= yeoman.dist %>/scripts/scripts.js': [
+        //     '.tmp/scripts/{,*/}*.js',
+        //     '<%= yeoman.app %>/scripts/{,*/}*.js'
+        //   ]
+        // }
       }
     },
     useminPrepare: {
@@ -196,9 +196,12 @@ module.exports = function (grunt) {
     cssmin: {
       dist: {
         files: {
-          '<%= yeoman.dist %>/styles/main.css': [
-            '.tmp/styles/{,*/}*.css',
-            '<%= yeoman.app %>/styles/{,*/}*.css'
+          // '<%= yeoman.dist %>/styles/main.css': [
+          //   '.tmp/styles/{,*/}*.css',
+          //   '<%= yeoman.app %>/styles/{,*/}*.css'
+          // ],
+          '<%= yeoman.dist %>/styles/angular-adminui.css': [
+            '.tmp/styles/ntd-admin-ui.css',
           ]
         }
       }
@@ -241,11 +244,11 @@ module.exports = function (grunt) {
     },
     uglify: {
       dist: {
-        files: {
-          '<%= yeoman.dist %>/scripts/scripts.js': [
-            '<%= yeoman.dist %>/scripts/scripts.js'
-          ]
-        }
+        // files: {
+        //   '<%= yeoman.dist %>/scripts/scripts.js': [
+        //     '<%= yeoman.dist %>/scripts/scripts.js'
+        //   ]
+        // }
       }
     },
     rev: {
@@ -315,7 +318,7 @@ module.exports = function (grunt) {
     'cdnify',
     'ngmin',
     'uglify',
-    'rev',
+    //'rev',
     'jade',
     'usemin'
   ]);
