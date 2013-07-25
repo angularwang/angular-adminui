@@ -70,22 +70,25 @@ form {
     margin-bottom: 5px;
     @include box-shadow(0 1px 4px rgba(0,0,0,.065));
     li {
-        .icon-chevron-down {
-            opacity: .25;
-        }
-        a:hover {
+        a {
+            cursor: pointer !important;
             .icon-chevron-down {
-                opacity: .5;
+                opacity: .25;
+            }
+            &:hover {
+                .icon-chevron-down {
+                    opacity: .5;
+                }
             }
         }
+        
         &.active{
             a, a:hover {
                 color: $white;
-                border-color: $submenuActiveBorderColor;
-                background: $submenuActiveBgColor;
+                border-width: 0;
+                padding: 9px 12px;
+                background-color: $submenuActiveBgColor;
 
-            }
-            a:hover {
                 .icon-chevron-down {
                     opacity: 1;
                 }
@@ -96,39 +99,36 @@ form {
             }
         }
 
-        &>ul {
+        ul {
             margin: 0;
             list-style: none;
             border-left: 1px solid $submenuChildBorderColor;
             border-right: 1px solid $submenuChildBorderColor;
             display: none;
 
-            &>li {
+            li {
                 font-size: $fontSizeSmall;
-                &.active, &:hover {
-                    margin-left: -1px;
-                    border-left: 3px solid $submenuChildHoverColor;
-                }
-                &.active {
-                    border-top-color: $submenuChildActiveColor;
-                    a, a:hover {
-                        padding-left: 22px;
-                    }
-                }
                 a {
                     display: block;
                     margin-top: -1px;
-                    padding: 8px 12px 8px 24px;
-                    background: $submenuChildLinkBgColor !important;
+                    padding: 8px 12px 8px 24px !important;
                     color: $submenuChildLinkColor !important;
+                    background-color: $submenuChildLinkBgColor !important;
                     &:hover {
-                        padding-left: 22px;
+                        border-width: 1px !important;
                         text-decoration: none;
-                        border-top-color: $submenuChildLinkHoverBorderTopColor !important;
-
+                        background: url("#{$SubmenuSprites}") no-repeat 15px 14px;
                     }
                     &:first-child {
                         border-top: 1px solid $submenuChildLinkHoverBorderTopColor;
+                    }
+                }
+
+                &.active {
+                    a, a:hover {
+                        color: red;
+                        border-color: $submenuChildBorderColor;
+                        background:url(#{$SubmenuSprites}) no-repeat 15px -22px;
                     }
                 }
             }

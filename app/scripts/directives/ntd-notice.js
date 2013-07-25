@@ -1,7 +1,8 @@
 'use strict';
 angular.module('ntd.directives').directive('notice', [
   '$rootScope',
-  function($rootScope) {
+  '$location',
+  function($rootScope, $location) {
 
     var msgObj = {
       'info': 'alert-info',
@@ -28,8 +29,11 @@ angular.module('ntd.directives').directive('notice', [
       replace: false,
       transclude: false,
       link: function(scope, element, attr) {
+        // $rootScope.$on('$routeChangeSuccess', function() {
+        //   element.addClass('show');
+        //   element.text('Loading friends...');
+        // });
         $rootScope.$on('event:notification', function(event, message) {
-
           element.html(buildHtml(message));
           if (element.find('button').length) {
             element
@@ -45,7 +49,12 @@ angular.module('ntd.directives').directive('notice', [
               $(this).empty();
             });
           }
+        });
 
+        scope.$watch(function() {
+          return $location.path();
+        }, function() {
+          element.hide();
         });
       }
     };
