@@ -148,6 +148,7 @@ module.exports = function (grunt) {
         // httpPath: '' ,
         sassDir: '<%= yeoman.app %>/styles',
         cssDir: '.tmp/styles',
+        imagesDir: 'images',
         javascriptsDir: '<%= yeoman.app %>/scripts',
         fontsDir: '<%= yeoman.app %>/styles/fonts',
         importPath: '<%= yeoman.app %>/components',
