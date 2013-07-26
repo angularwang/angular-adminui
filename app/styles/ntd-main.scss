@@ -76,6 +76,10 @@ form {
                 opacity: .25;
             }
             &:hover {
+                @include transition-property(background-color);
+                @include transition-duration(.45s);
+                @include transition-timing-function(ease);
+
                 .icon-chevron-down {
                     opacity: .5;
                 }
@@ -118,6 +122,9 @@ form {
                         border-width: 1px !important;
                         text-decoration: none;
                         background: url("#{$SubmenuSprites}") no-repeat 15px 14px;
+                        @include transition-property(background-position-x);
+                        @include transition-duration(.2s);
+                        @include transition-timing-function(ease-out);
                     }
                     &:first-child {
                         border-top: 1px solid $submenuChildLinkHoverBorderTopColor;
@@ -278,6 +285,36 @@ form {
         // background: #f5f5f5;
         .table-normal {
             margin: 0;
+        }
+    }
+}
+
+// Box widget
+.box {
+    margin-bottom: $baseLineHeight;
+    .opts {
+        float: right;
+    }
+    .box-hd {
+        padding: 8px;
+        line-height: $baseLineHeight;
+        border: 1px solid $boxWidgetBorder;
+        @include base-widget-header-gradient;
+        @include border-top-radius($baseBorderRadius);
+        h3 {
+            margin: 0;
+            font-size: 14px;
+            line-height: $baseLineHeight;
+        }
+    }
+    .box-bd {
+        padding: 8px;
+        border: solid #ddd;
+        border-width: 0 1px 1px;
+        background-color: $white;
+        @include border-bottom-radius($baseBorderRadius);
+        .alert {
+            margin-bottom: 0;
         }
     }
 }

@@ -24,10 +24,10 @@ $SubmenuSprites:          "../images/menu_sprites.png";
 // Font
 $fontSizeSmall:   12px;
 
-// Table header gradient color
-$tableHeaderGradientStart:  #f9f9f9;
-$tableHeaderGradientEnd:    #ededed;
-$tableHeaderActiveBgColor:  #ebf3fd;
+// Base widget header gradient color
+$BaseWidgetHeaderGradientStart:  #f9f9f9;
+$BaseWidgetHeaderGradientEnd:    #ededed;
+$BaseWidgetHeaderActiveBgColor:  #ebf3fd;
 
 // Info box
 $infoBoxBorderColor:        #d5d5d5;
@@ -54,14 +54,18 @@ $advanceSearchFilterArrowHoverBgColor: #e3e3e3;
 
 // Footable
 $footableDetailFontSize: 12px;
-$footableDetailBgColor:  #eeeeee;
+$footableDetailBgColor:  #eee;
+
+// Box widget
+$boxWidgetBorder: #ddd;
 
 // Mixin
-@mixin table-header-gradient {
+@mixin base-widget-header-gradient {
     @include text-shadow(0 1px 0 $white);
     //@include box-shadow(0 1px 0 0 $white inset);
-    @include background-image(linear-gradient($tableHeaderGradientStart, $tableHeaderGradientEnd)); 
+    @include background-image(linear-gradient($BaseWidgetHeaderGradientStart, $BaseWidgetHeaderGradientEnd)); 
 }
+
 
 // Icon animate
 @-webkit-keyframes rotate {
