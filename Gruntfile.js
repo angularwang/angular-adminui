@@ -145,7 +145,6 @@ module.exports = function (grunt) {
     },
     compass: {
       options: {
-        // httpPath: '' ,
         sassDir: '<%= yeoman.app %>/styles',
         cssDir: '.tmp/styles',
         imagesDir: 'images',
@@ -247,7 +246,7 @@ module.exports = function (grunt) {
       dist: {
         // files: {
         //   '<%= yeoman.dist %>/scripts/scripts.js': [
-        //     '<%= yeoman.dist %>/scripts/scripts.js'
+        //     '<%= yeoman.dist %>/scripts/*.js'
         //   ]
         // }
       }
