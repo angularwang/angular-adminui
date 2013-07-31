@@ -11,15 +11,16 @@
     <meta name="viewport" content="width=device-width">
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
     
-    <!-- build:css({.tmp, app, components}) styles/angular-adminui-unzip.css -->
-    <link rel="stylesheet" href="styles/ntd-admin-ui.css">
-    <!-- endbuild -->
-
     <!-- build:css styles/components.css -->
     <link rel="stylesheet" href="components/bootstrap-datepicker/css/datepicker.css" />
     <link rel="stylesheet" href="components/bootstrap-timepicker/css/bootstrap-timepicker.css" />
     <link rel="stylesheet" href="components/jquery.easy-pie-chart/jquery.easy-pie-chart.css" />
     <link rel="stylesheet" href="components/nanoscroller/bin/css/nanoscroller.css" />
+    <link rel="stylesheet" href="components/chosen/public/chosen.css" />
+    <!-- endbuild -->
+
+    <!-- build:css({.tmp, app, components}) styles/angular-adminui-unzip.css -->
+    <link rel="stylesheet" href="styles/ntd-admin-ui.css">
     <!-- endbuild -->
 
     <!-- build:css({.tmp, app}) styles/docs.css -->
@@ -180,12 +181,11 @@
     <script src="components/jquery.easy-pie-chart/jquery.easy-pie-chart.js"></script>
     <script src="components/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
     <script src="components/bootstrap-timepicker/js/bootstrap-timepicker.js"></script>
-    <script src="components/nanoscroller/bin/javascripts/jquery.nanoscroller.min.js"></script>
     <script src="components/footable/js/footable.js"></script>
     <script src="components/d3/d3.js"></script>
-    <script src="components/angular-ui-select2/src/select2.js"></script>
     <script src="components/jquery.slimscroll/jquery.slimscroll.min.js"></script>
     <script src="components/bootstrap/docs/assets/js/bootstrap.min.js"></script>
+    <script src="components/chosen/public/chosen.jquery.js"></script>
     <script src="scripts/vendor/angular-bootstrap-prettify.min.js"></script>
     <!-- endbuild -->
 
@@ -198,7 +198,6 @@
 
     <!-- build:js scripts/angular-adminui.js -->
     <script src="scripts/directives/ntd-ui-directive.js"></script>
-    <script src="scripts/directives/ntd-notice.js"></script>
     <script src="scripts/directives/ntd-advance-filter.js"></script>
     <script src="scripts/directives/ntd-confirm-button.js"></script>
     <script src="scripts/directives/ntd-date-picker.js"></script>
@@ -214,6 +213,8 @@
     <script src="scripts/directives/ntd-loading-button.js"></script>
     <script src="scripts/directives/ntd-slim-scroll.js"></script>
     <script src="scripts/directives/ntd-cascade-list.js"></script>
+    <script src="scripts/directives/ntd-chosen.js"></script>
+    <script src="scripts/directives/ntd-tag-input.js"></script>
     <!-- endbuild -->
 
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
