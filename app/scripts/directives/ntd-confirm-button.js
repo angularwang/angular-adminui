@@ -38,7 +38,16 @@ angular.module('ntd.directives').directive('confirmButton', [
           dontBubble = true;
           e.stopPropagation();
 
-          $('[id^="button-"]').closest('.popover').hide();
+          console.log(element.hasClass('disabled'));
+          if(element.hasClass('disabled')) {
+            return false;
+          } else {
+            element.addClass('disabled');
+          }
+
+          // $('[id^="button-"]').closest('.popover').prev().removeClass('disabled');
+
+          $('[id^="button-"]').closest('.popover').hide().prev().removeClass('disabled');
           element.popover('show');
           pop = $('#button-' + buttonId);
           pop.closest('.popover').click(function(e) {
@@ -57,6 +66,7 @@ angular.module('ntd.directives').directive('confirmButton', [
             dontBubble = false;
             $document.off('click.confirmbutton.' + buttonId);
             element.popover('hide');
+            element.removeClass('disabled');
           });
 
           $document.on('click.confirmbutton.' + buttonId,
@@ -64,6 +74,7 @@ angular.module('ntd.directives').directive('confirmButton', [
             function() {
               $document.off('click.confirmbutton.' + buttonId);
               element.popover('hide');
+              element.removeClass('disabled');
             }
           );
         });
