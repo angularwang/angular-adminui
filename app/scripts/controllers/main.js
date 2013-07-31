@@ -1,5 +1,44 @@
 'use strict';
 
+var chosenCtrl = function($scope, $http, $q) {
+  $scope.options = this.getOptions();
+  $scope.optionPromise = angular.bind(this, this.getOptionPromise, $http, $q);
+  $scope.linkages = [{
+    id: 1,
+    name: 'bb',
+    children: [
+      {id: 2, name: 'aa', children: [
+        {id: 3, name: 'vv'}
+      ]}
+    ]
+  }];
+};
+
+chosenCtrl.prototype.getOptionPromise = function($http, $q, search) {
+  var deferred = $q.defer();
+  $http.jsonp(
+    'http://api.rottentomatoes.com/api/public/v1.0/movies.json?q=' +
+    search + '&apikey=ju6z9mjyajq2djue3gbvv26t&page_limit=10&page=1' +
+    '&callback=JSON_CALLBACK'
+  ).success(function(data) {
+    deferred.resolve(data.movies);
+  }).error(function(error) {
+    deferred.reject(error);
+  });
+
+  return deferred.promise;
+};
+
+chosenCtrl.prototype.getOptions = function() {
+  return [
+    {id: 1, name: 'CN'},
+    {id: 2, name: 'JP'},
+    {id: 3, name: 'EN'},
+    {id: 4, name: 'AU'},
+    {id: 5, name: 'DE'}
+  ];
+};
+
 demoApp
   .controller('MainCtrl', ['$scope', '$window', '$location', function($scope, $window, $location){
     $scope.$location = $location;
@@ -34,6 +73,7 @@ demoApp
       { caption: 'Processor Load', percent: 35,   usage: '35%',   },
       { caption: 'Bandwidth',      percent: 77,   usage: '1.5TB', }
     ];
+    $scope.alert = {};
 }]);
 
 demoApp
@@ -85,8 +125,10 @@ demoApp
   })
   .controller('AlertDemoCtrl', function ($scope) {
     $scope.alerts = [
-      { type: 'error', msg: 'Oh snap! Change a few things up and try submitting again.' }, 
-      { type: 'success', msg: 'Well done! You successfully read this important alert message.' }
+      { type: 'alert', msg: '警告' }, 
+      { type: 'error', msg: '失败，错误, 危险' }, 
+      { type: 'success', msg: '成功信息' },
+      { type: 'info', msg: '需要注意的信息' }
     ];
 
     $scope.addAlert = function() {
@@ -126,11 +168,13 @@ demoApp
       keyboard: true,
       backdropClick: true,
       template:  t, // OR: templateUrl: 'path/to/view.html',
+      // templateUrl: 'views/test.html',
       controller: 'TestDialogController'
     };
 
     $scope.openDialog = function(){
       var d = $dialog.dialog($scope.opts);
+      // d.open();
       d.open().then(function(result){
         if(result)
         {
@@ -285,6 +329,7 @@ demoApp
       {'dptCode':'9','dptMasterId':0,'dptName':'\u4eba\u529b\u8d44\u6e90\u90e8','dptPath':'\/9\/','id':9,'parentCode':'0'}
     ];
   })
+.controller('chosenCtrl', ['$scope', '$http', '$q', chosenCtrl])
 ;
 
 
