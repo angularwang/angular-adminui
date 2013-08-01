@@ -7,7 +7,7 @@
  */
 angular.module('ntd.directives').directive('fieldError', function() {
   return {
-    template: '<div ng-show="showError" ng-transclude></div>',
+    template: '<span class="text-error" ng-show="showError" ng-transclude></span>',
     restrict: 'EAC',
     transclude: true,
     scope: {

@@ -3,6 +3,26 @@
         Admin UI 组件
     </h1>
 </div>
+<h3>field error</h3>
+<form name="myForm" ng-submit="save()">
+
+    <label for="personName">Example for fied error</label>
+    <input type="text" 
+        id="personName"
+        class="span3"
+        name="personName" 
+        ng-model="person.name" 
+        required>
+
+
+    <span class="help-inline" field-error for="myForm.personName">显示错误信息</span>
+    <!-- <span ng-show="myForm.personName.$error.required">Required!</span>
+    <span ng-show="myForm.personName.$error.pattern">Incorrect Format, should be MM/DD/YYYY</span> -->
+    <p>
+        <input type="submit" class="btn" ng-disabled="!myForm.$valid" value="保存"/>
+    </p>
+</form>
+
 <h3>Chosen</h3>
 <ul>
     <li><p><code>data-placeholder - string</code>, 占位提示信息</p></li>
@@ -258,7 +278,7 @@
 </pre>
 
 <h3>Label state</h3>
-<p>为<code>label</code>添加<code>label-state="这里输入提示信息"</code></p>
+<p>为<code>label</code>添加<code>label-state="这里文字为解释说明label的"</code></p>
 <form class="form-horizontal">
     <fieldset>
         <div class="control-group">
