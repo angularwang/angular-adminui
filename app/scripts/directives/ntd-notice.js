@@ -15,7 +15,7 @@ angular.module('ntd.directives').directive('notice', [
       var noticeHtml = '<div class="alert ' +
                           msgObj[message.state] + '">' +
                           '<strong>' + message.info + '</strong>' +
-                          '<button type="button" class="close">x</button>' +
+                          '<button type="button" class="close">×</button>' +
                         '</div>';
       return noticeHtml;
     }
