@@ -539,7 +539,7 @@ form {
 .chzn-container-single .chzn-single {
     display: block;
     @include ctb-ie7-inline-block();
-    padding: 3px 12px 2px;
+    padding: 4px 12px 1px;
     margin-bottom: 0; // For input.btn
     font-size: $baseFontSize;
     line-height: $baseLineHeight;
