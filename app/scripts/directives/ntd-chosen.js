@@ -164,34 +164,38 @@
 
         // options data loaded
         chosenEl.bind('liszt:data_loaded', function(e, data) {
-          // remove loading pic
-          chosen.search_field.removeClass('loading');
-          // load new options
-          if (ng.isArray(data.options) && data.options.length > 0) {
-            optionsModelSetter(scope, data.options);
-          } else {
-            // show no results tip
-            optionsModelSetter(scope, []);
-            chosen.no_results_clear();
-            chosen.no_results(scope.$search);
-          }
-          // concat selected options into loaded options
-          ng.forEach(selected_options, function(selectedOption) {
-            var hasOption = false;
-            ng.forEach(optionsModelGetter(scope), function(option) {
-              if (option.id == selectedOption.id) {
-                hasOption = true;
-                return;
-              }
-            });
-            if (!hasOption) {
-              var options = optionsModelGetter(scope);
-              options.push(selectedOption);
-              if (ng.isArray(options)) {
-                optionsModelSetter(scope, options);
-              }
+          if (onSearch) {
+            // remove loading pic
+            chosen.search_field.removeClass('loading');
+            // load new options
+            if (ng.isArray(data.options) && data.options.length > 0) {
+              optionsModelSetter(scope, data.options);
+            } else {
+              // show no results tip
+              optionsModelSetter(scope, []);
+              chosen.no_results_clear();
+              chosen.no_results(scope.$search);
             }
-          });
+            if (multiple) {
+              // concat selected options into loaded options
+              ng.forEach(selected_options, function(selectedOption) {
+                var hasOption = false;
+                ng.forEach(optionsModelGetter(scope), function(option) {
+                  if (option.id == selectedOption.id) {
+                    hasOption = true;
+                    return;
+                  }
+                });
+                if (!hasOption) {
+                  var options = optionsModelGetter(scope);
+                  options.push(selectedOption);
+                  if (ng.isArray(options)) {
+                    optionsModelSetter(scope, options);
+                  }
+                }
+              });
+            }
+          }
           // refresh chosen when options loaded
           chosenEl.trigger('liszt:updated');
         });
