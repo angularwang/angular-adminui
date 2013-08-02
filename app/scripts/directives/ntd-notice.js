@@ -2,7 +2,8 @@
 angular.module('ntd.directives').directive('notice', [
   '$rootScope',
   '$location',
-  function($rootScope, $location) {
+  '$timeout',
+  function($rootScope, $location, $timeout) {
 
     var msgObj = {
       'info': 'alert-info',
@@ -32,8 +33,14 @@ angular.module('ntd.directives').directive('notice', [
             .find('button').on('click', function() {
               element.fadeOut();
             });
-        });
 
+            if(message.redirect_url) {
+              $timeout(function() {
+                $location.path(message.redirect_url);
+              }, 1500);
+            }
+        });
+        
         scope.$watch(function() {
           return $location.path();
         }, function() {
