@@ -335,11 +335,11 @@ form {
         }
     }
 }
-.page-action {
-    margin-bottom: $baseLineHeight;
-    padding-bottom: $baseLineHeight;
-    overflow: hidden;
-    border-bottom: 1px solid $grayLighter;
+.page-header {
+    .page-action {
+        float: right;
+        margin-top: 15px;
+    }
 }
 
 // Tag input

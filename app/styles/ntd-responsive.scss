@@ -87,8 +87,11 @@ body {
     }
 }
 
-.flash-message {
-    top: 0;
+.page-header {
+    .page-action {
+        float: none;
+        margin-top: 0;
+    }
 }
 
 }
