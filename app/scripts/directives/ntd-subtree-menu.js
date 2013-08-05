@@ -1,7 +1,7 @@
-'use strict';
 /* sub tree menu */
-angular.module('ntd.directives').directive('subTreemenu', [
-  function() {
+(function() {
+  'use strict';
+  function subTreemenuDirective() {
     return {
       restrict: 'A',
       link: function(scope, element, attrs, cookieStore) {
@@ -16,4 +16,6 @@ angular.module('ntd.directives').directive('subTreemenu', [
       }
     };
   }
-]);
+  angular.module('ntd.directives').directive('subTreemenu', [subTreemenuDirective]);
+}());
+

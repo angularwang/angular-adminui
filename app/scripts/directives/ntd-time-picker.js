@@ -1,7 +1,8 @@
-'use strict';
-angular.module('ntd.directives').directive('timePicker', ['$timeout',
-  function($timeout) {
-    var TIME_REGEXP = '((?:(?:[0-1][0-9])|(?:[2][0-3])|(?:[0-9])):(?:[0-5][0-9])(?::[0-5][0-9])?(?:\\s?(?:am|AM|pm|PM))?)';
+/* ntd time picker */
+(function() {
+  'use strict';
+  var TIME_REGEXP = '((?:(?:[0-1][0-9])|(?:[2][0-3])|(?:[0-9])):(?:[0-5][0-9])(?::[0-5][0-9])?(?:\\s?(?:am|AM|pm|PM))?)';
+  function timePickerDirective($timeout) {
     return {
       restrict: 'A',
       require: '?ngModel',
@@ -34,4 +35,5 @@ angular.module('ntd.directives').directive('timePicker', ['$timeout',
       }
     };
   }
-]);
+  angular.module('ntd.directives').directive('timePicker', ['$timeout', timePickerDirective]);
+}());

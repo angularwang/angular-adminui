@@ -13,9 +13,9 @@
  *
  *  @author Fengming Sun <sunfengming@ec3s.com>
  */
-
-angular.module('ntd.directives').directive('tagInput', [
-  function(){
+(function() {
+  'use strict';
+  function tagInputDirective() {
     return {
       restrict: 'AC',
       replace: true,
@@ -131,4 +131,5 @@ angular.module('ntd.directives').directive('tagInput', [
       }
     };
   }
-]);
+  angular.module('ntd.directives').directive('tagInput', [tagInputDirective]);
+}());

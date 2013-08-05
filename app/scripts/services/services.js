@@ -1,4 +1,6 @@
-angular.module('ntd.services', []).factory('flash', ['$rootScope', function($rootScope) {
+angular.module('ntd.services', []);
+
+angular.module('ntd.services').factory('flash', ['$rootScope', function($rootScope) {
   return {
     notify: function(message) {
       $rootScope.$emit('event:notification', message);
@@ -110,6 +112,6 @@ angular.module('ntd.services', []).factory('flash', ['$rootScope', function($roo
         return new Flash();
     }
 
-    angular.module('ntd.service').factory('flashMessage', [flashProvider]);
+    angular.module('ntd.services').factory('flashMessage', [flashProvider]);
 
 }());

@@ -1,9 +1,7 @@
-'use strict';
-
-angular.module('ntd.directives').directive('datePicker', [
-  '$timeout',
-  '$ntdConfig',
-  function($timeout, $ntdConfig) {
+/* date picker */
+(function() {
+  'use strict';
+  function datePickerDirective($timeout, $ntdConfig) {
     var isAppleTouch = /(iP(a|o)d|iPhone)/g.test(navigator.userAgent);
     var regexpMap = function regexpMap(language) {
       language = language || 'en';
@@ -188,4 +186,11 @@ angular.module('ntd.directives').directive('datePicker', [
       }
     };
   }
-]);
+
+  angular.module('ntd.directives').directive('datePicker', [
+    '$timeout',
+    '$ntdConfig',
+    datePickerDirective
+  ]);
+}());
+

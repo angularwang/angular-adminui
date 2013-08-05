@@ -1,6 +1,7 @@
-'use strict';
-angular.module('ntd.directives').directive('navBar', ['$location',
-  function($location) {
+/* nav bar */
+(function() {
+  'use strict';
+  function navBarDirective($location) {
     return {
       restrict: 'A',
       link: function postLink(scope, element, attrs, controller) {
@@ -25,4 +26,6 @@ angular.module('ntd.directives').directive('navBar', ['$location',
       }
     };
   }
-]);
+  
+  angular.module('ntd.directives').directive('navBar', ['$location', navBarDirective]);
+}());

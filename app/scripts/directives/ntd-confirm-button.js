@@ -1,8 +1,7 @@
-'use strict';
-angular.module('ntd.directives').directive('confirmButton', [
-  '$document',
-  '$parse',
-  function($document, $parse) {
+/* confirm button*/
+(function() {
+  'use strict';
+  function confirmButtonDirective($document, $parse) {
     return {
       restrict: 'A',
       link: function(scope, element, attrs) {
@@ -16,14 +15,14 @@ angular.module('ntd.directives').directive('confirmButton', [
         title = attrs.title || '确认删除?';
         pos = attrs.position || 'top';
         html = '<div id=\"button-' + buttonId + '\">' +
-                  '<span class=\"confirmbutton-msg\">' + message + '</span>' +
-                  '<button type=\"button\" class=\"confirmbutton-yes btn btn-primary\">' +
-                    yep +
-                  '</button>\n' +
-                  '<button type="button" class=\"confirmbutton-no btn\">' +
-                    nope +
-                  '</button>' +
-                '</div>';
+          '<span class=\"confirmbutton-msg\">' + message + '</span>' +
+          '<button type=\"button\" class=\"confirmbutton-yes btn btn-primary\">' +
+            yep +
+          '</button>\n' +
+          '<button type="button" class=\"confirmbutton-no btn\">' +
+            nope +
+          '</button>' +
+        '</div>';
 
         element.popover({
           content: html,
@@ -38,7 +37,6 @@ angular.module('ntd.directives').directive('confirmButton', [
           dontBubble = true;
           e.stopPropagation();
 
-          console.log(element.hasClass('disabled'));
           if(element.hasClass('disabled')) {
             return false;
           } else {
@@ -79,4 +77,11 @@ angular.module('ntd.directives').directive('confirmButton', [
       }
     };
   }
-]);
+
+  angular.module('ntd.directives').directive('confirmButton', [
+    '$document',
+    '$parse',
+    confirmButtonDirective
+  ]);
+}());
+
