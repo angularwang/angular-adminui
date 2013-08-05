@@ -91,7 +91,7 @@
           var optionsModelGetter = $parse(optionsModelName);
           var optionsModelSetter = optionsModelGetter.assign;
           scope.$watch(optionsModelName, function(newValue, oldValue) {
-            if (newValue) {
+            if (onSearch && newValue) {
               initOptions = newValue;
             }
             chosenEl.trigger('liszt:data_loaded', {
