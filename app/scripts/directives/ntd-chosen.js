@@ -91,6 +91,9 @@
           var optionsModelGetter = $parse(optionsModelName);
           var optionsModelSetter = optionsModelGetter.assign;
           scope.$watch(optionsModelName, function(newValue, oldValue) {
+            if (newValue) {
+              initOptions = newValue;
+            }
             chosenEl.trigger('liszt:data_loaded', {
               options: newValue,
               optionsModelName: optionsModelName
@@ -173,7 +176,7 @@
               if (!ng.isArray(options)) {
                 options = [];
               }
-              if (data.needRecord) {
+              if (data.needRecord && !initOptions) {
                 initOptions = options;
               }
               chosenEl.trigger('liszt:data_loaded', {
