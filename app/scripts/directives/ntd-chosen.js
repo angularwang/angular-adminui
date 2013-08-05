@@ -17,7 +17,7 @@
  */
 (function(app, ng) {
   'use strict';
-  var Chosen = function($parse) {
+  var Chosen = function($parse, $timeout) {
     return {
       restrict: 'AC',
       link: function(scope, elem, attrs) {
@@ -38,6 +38,7 @@
         var chosenEl = elem.chosen(options);
         var chosen = chosenEl.data('chosen');
         var selected_options = {};
+        var searchTxt = scope.$new(false);
 
         if (onSearch) {
           // 不进入匹配模式
@@ -121,14 +122,17 @@
 
         // set chosen object
         chosenEl.bind('liszt:showing_dropdown', function(e, data) {
-          if (!scope.$search) {
-            scope.$search = '';
-          }
-          // if single then set search field
-          if (!multiple) {
-            chosen.search_field.val(scope.$search);
-          }
           if (onSearch) {
+            if (!searchTxt.$search) {
+              $timeout(function() {
+                chosen.search_results.find('.no-results').text('请输入关键字...');
+              });
+              return;
+            }
+            // if single then set search field
+            if (!multiple) {
+              chosen.search_field.val(searchTxt.$search);
+            }
             chosenEl.trigger('liszt:load_data', {
               onSearch: onSearch,
               optionsModelName: optionsModelName
@@ -138,11 +142,11 @@
 
         // load options data
         chosenEl.bind('liszt:load_data', function(e, data) {
-          var promise = scope.$eval(data.onSearch);
+          var promise = searchTxt.$eval(data.onSearch);
           // add loading pic
           chosen.search_field.addClass('loading');
           // add loading tip
-          chosen.search_results.find('.no-results').text('loading...');
+          chosen.search_results.find('.no-results').text('加载中...');
           promise.then(
             function(result) {
               var options = [];
@@ -173,8 +177,6 @@
             } else {
               // show no results tip
               optionsModelSetter(scope, []);
-              chosen.no_results_clear();
-              chosen.no_results(scope.$search);
             }
             if (multiple) {
               // concat selected options into loaded options
@@ -197,7 +199,12 @@
             }
           }
           // refresh chosen when options loaded
-          chosenEl.trigger('liszt:updated');
+          $timeout(function() {
+            chosenEl.trigger('liszt:updated');
+            if (!searchTxt.$search) {
+              chosen.search_results.find('.no-results').text('请输入关键字...');
+            }
+          });
         });
 
         // get new option list
@@ -205,9 +212,9 @@
           // if chosen.search_field changed, callback onSearch func
           chosen.search_field.bind('keyup', function(e) {
             if (chosen && chosen.results_showing) {
-              scope.$search = chosen.get_search_text();
-              if (oldSearch != scope.$search) {
-                oldSearch = scope.$search;
+              searchTxt.$search = chosen.get_search_text();
+              if (oldSearch != searchTxt.$search) {
+                oldSearch = searchTxt.$search;
                 chosenEl.trigger('liszt:load_data', {
                   onSearch: onSearch,
                   optionsModelName: optionsModelName
@@ -315,6 +322,6 @@
     };
   };
 
-  app.directive('ntdChosen', ['$parse', Chosen]);
+  app.directive('ntdChosen', ['$parse', '$timeout', Chosen]);
   app.directive('ntdLinkage', ['$parse', Linkage]);
 })(angular.module('ntd.directives'), angular);
