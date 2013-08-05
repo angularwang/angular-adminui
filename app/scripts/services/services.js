@@ -14,7 +14,6 @@ angular.module('ntd.services').factory('flash', ['$rootScope', function($rootSco
  * License: MIT
  */
 /* global angular */
-
 (function () {
     'use strict';
 

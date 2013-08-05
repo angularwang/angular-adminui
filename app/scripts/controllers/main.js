@@ -330,6 +330,32 @@ demoApp
     ];
   })
 .controller('chosenCtrl', ['$scope', '$http', '$q', chosenCtrl])
+.controller('flashMessageCtrl', ['$scope', 'flashMessage', '$timeout', function(){
+  $scope.all = function () {
+    $scope.info();
+    $scope.warn();
+    $scope.success();
+    $scope.error();
+  };
+
+  $scope.info = function () {
+      flashMessage.info = 'info message';
+  };
+
+  $scope.warn = function () {
+      flashMessage.warn = 'warn message';
+  };
+
+  $scope.success = function () {
+      flashMessage.success = 'success message';
+  };
+
+  $scope.error = function () {
+      flashMessage.error = 'error message';
+  };
+
+  $scope.all();  
+}])
 ;
 
 
