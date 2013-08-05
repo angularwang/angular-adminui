@@ -131,6 +131,8 @@
               chosenEl.trigger('liszt:updated');
               chosen.search_field.val(searchTxt.$search);
             });
+          } else if (chosen.active_field) {
+            initOptions = optionsModelGetter(scope);
           }
         });
 
