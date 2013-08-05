@@ -27,6 +27,7 @@
         var optionsNode = attrs.optionsNode || null;
         var multiple = attrs.multiple || null;
         var oldSearch = '';
+        var initOptions;
         var disableSearchThreshold = attrs.disableSearchThreshold || 0;
         var allowSingleDeselect = attrs.allowSingleDeselect || false;
         allowSingleDeselect = allowSingleDeselect == 'true' ? true : false;
@@ -120,6 +121,20 @@
           }, true);
         }
 
+        //reselect
+        chosenEl.bind('liszt:hiding_dropdown', function(e) {
+          if (!chosen.active_field && ng.isArray(initOptions)) {
+            optionsModelSetter(scope, initOptions);
+            console.log('reset search');
+            searchTxt.$search = '';
+            searchTxt.$apply();
+            $timeout(function() {
+              chosenEl.trigger('liszt:updated');
+              chosen.search_field.val(searchTxt.$search);
+            });
+          }
+        });
+
         // set chosen object
         chosenEl.bind('liszt:showing_dropdown', function(e, data) {
           if (onSearch) {
@@ -135,7 +150,8 @@
             }
             chosenEl.trigger('liszt:load_data', {
               onSearch: onSearch,
-              optionsModelName: optionsModelName
+              optionsModelName: optionsModelName,
+              needRecord: true
             });
           }
         });
@@ -157,6 +173,9 @@
               }
               if (!ng.isArray(options)) {
                 options = [];
+              }
+              if (data.needRecord) {
+                initOptions = options;
               }
               chosenEl.trigger('liszt:data_loaded', {
                 options: options,
