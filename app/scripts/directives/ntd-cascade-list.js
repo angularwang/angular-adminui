@@ -1,41 +1,39 @@
-'use strict';
+/* casecade list */
+(function() {
+  'use strict';
+  var $element, $tree, $scope;
+  function createList(parent) {
+    var parentItem = getItem(parent);
+    var currItem = getItem($scope.ngModel);
+    var level = parentItem ? parentItem.level + 1 : 0;
+    var list = $('<ul></ul>').css('margin-left', (level * 33) + '%')
+      .attr('cl-id', parent);
+    for (var i in $tree) {
+      var item = $tree[i];
+      if (item.parent == parent) {
+        var li = $('<li cl-value="' + item.value + '">' + item.text + '</li>')
+          .click(onItemClick);
 
-angular.module('ntd.directives').directive('cascadeList', ['$parse',
-  function($parse) {
-    var $element, $tree, $scope;
-
-    function createList(parent) {
-      var parentItem = getItem(parent);
-      var currItem = getItem($scope.ngModel);
-      var level = parentItem ? parentItem.level + 1 : 0;
-      var list = $('<ul></ul>').css('margin-left', (level * 33) + '%')
-        .attr('cl-id', parent);
-      for (var i in $tree) {
-        var item = $tree[i];
-        if (item.parent == parent) {
-          var li = $('<li cl-value="' + item.value + '">' + item.text + '</li>')
-            .click(onItemClick);
-
-          if (item.children().length > 0) {
-            li.addClass('has-child');
-          }
-
-          if (item.value == $scope.ngModel) {
-            list.addClass('selective');
-          }
-
-          if (currItem && currItem.path.indexOf('' + item.value) > -1) {
-            li.addClass('selective');
-          }
-
-          list.append(li);
+        if (item.children().length > 0) {
+          li.addClass('has-child');
         }
-      }
 
-      return list;
+        if (item.value == $scope.ngModel) {
+          list.addClass('selective');
+        }
+
+        if (currItem && currItem.path.indexOf('' + item.value) > -1) {
+          li.addClass('selective');
+        }
+
+        list.append(li);
+      }
     }
 
-    function onItemClick(e) {
+    return list;
+  }
+
+  function onItemClick(e) {
       var item = $(e.target).addClass('selective');
       var parent = item.parent().addClass('selective');
       var parentId = item.attr('cl-value');
@@ -127,35 +125,39 @@ angular.module('ntd.directives').directive('cascadeList', ['$parse',
       return ret;
     };
 
-    return {
-      restrict: 'ACE',
-      replace: false,
-      scope: {'ngModel': '=', 'data': '='},
-      link: function(scope, element, attrs) {
-        $scope = scope;
+    function cascadeListDirective($parse) {
+      return {
+        restrict: 'ACE',
+        replace: false,
+        scope: {'ngModel': '=', 'data': '='},
+        link: function(scope, element, attrs) {
+          $scope = scope;
 
-        $element = $('<div class="cascade-list-inner"></div>')
-          .css('width', attrs.width || '400px')
-          .css('height', attrs.height || '120px');
-        element.append($element).addClass('cascade-list');
+          $element = $('<div class="cascade-list-inner"></div>')
+            .css('width', attrs.width || '400px')
+            .css('height', attrs.height || '120px');
+          element.append($element).addClass('cascade-list');
 
-        var options = {
-          name: attrs.name,
-          parent: attrs.parent || 'parent',
-          value: attrs.value || 'id',
-          text: attrs.text || 'name',
-          path: attrs.path || 'path'
-        };
-        scope.$watch('data', function(val, old) {
-          $tree = new TreeData(val, options);
-          initList($tree);
-        });
+          var options = {
+            name: attrs.name,
+            parent: attrs.parent || 'parent',
+            value: attrs.value || 'id',
+            text: attrs.text || 'name',
+            path: attrs.path || 'path'
+          };
+          scope.$watch('data', function(val, old) {
+            $tree = new TreeData(val, options);
+            initList($tree);
+          });
 
-        scope.$watch('ngModel', function(val, old) {
-          if (val != old) {
-            initList();
-          }
-        });
-      }
-    };
-}]);
+          scope.$watch('ngModel', function(val, old) {
+            if (val != old) {
+              initList();
+            }
+          });
+        }
+      };
+    }
+
+  angular.module('ntd.directives').directive('cascadeList', ['$parse', cascadeListDirective]);
+}());

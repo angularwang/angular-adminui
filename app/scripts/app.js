@@ -2,22 +2,6 @@
 
 var demoApp = angular.module('demoApp', ['ntd.services', 'ntd.directives', 'ui.bootstrap', 'bootstrapPrettify']);
 
-// demoApp.animation('animate-enter', function() {
-//   return {
-//     setup : function(element) {
-//       //prepare the element for animation
-//       element.css({ 'opacity': 0 });
-
-//     },
-//     start : function(element) {
-//       //start the animation
-//       element.animate({
-//         'opacity' : 1
-//       });
-//     }
-//   }
-// });
-
 demoApp
   .config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {
     $routeProvider

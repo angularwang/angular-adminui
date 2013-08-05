@@ -3,7 +3,13 @@
         Admin UI 组件
     </h1>
 </div>
-<h3>field error</h3>
+<h3>Flash alert</h3>
+<div flash-alert active-class="in" class="alert fade">
+    <strong class="alert-heading">{{flash.type}}</strong>
+    <span class="alert-message">{{flash.message}}</span>
+    <p>Works outside of controller scope</p>
+</div>
+<h3>Field error</h3>
 <form name="myForm" ng-submit="save()">
 
     <label for="personName">Example for fied error</label>

@@ -1,21 +1,19 @@
-'use strict';
-
-angular.module('ntd.directives').directive('easyPieChart', [
-  '$compile',
-  '$timeout',
-  function($compile, $timeout) {
+/* easy pie chart */
+(function() {
+  'use strict';
+  function easyPieChartDirective($timeout) {
     return {
       restrict: 'A',
       scope: { item: '=easyPieChart' },
       replace: true,
       template: '<div class="easy-pie-chart">' +
-                    '<div data-percent="{{item.percent}}">' +
-                        '{{item.usage}}' +
-                    '</div>' +
-                    '<div class="caption">' +
-                        '{{item.caption}}' +
-                    '</div>' +
-                '</div>',
+          '<div data-percent="{{item.percent}}">' +
+              '{{item.usage}}' +
+          '</div>' +
+          '<div class="caption">' +
+              '{{item.caption}}' +
+          '</div>' +
+      '</div>',
 
       link: function(scope, element, attrs) {
         var colorRange = ['#08c', '#e7912a', '#bacf0b',
@@ -42,4 +40,6 @@ angular.module('ntd.directives').directive('easyPieChart', [
       }
     };
   }
-]);
+  
+  angular.module('ntd.directives').directive('easyPieChart', ['$timeout', easyPieChartDirective]);
+}());

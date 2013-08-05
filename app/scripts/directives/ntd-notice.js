@@ -1,26 +1,23 @@
-'use strict';
-angular.module('ntd.directives').directive('notice', [
-  '$rootScope',
-  '$location',
-  '$timeout',
-  function($rootScope, $location, $timeout) {
+/* notcie */
+(function() {
+  'use strict';
+  var msgObj = {
+    'info': 'alert-info',
+    'error': 'alert-error',
+    'success': 'alert-success',
+    'warning': 'alert'
+  };
 
-    var msgObj = {
-      'info': 'alert-info',
-      'error': 'alert-error',
-      'success': 'alert-success',
-      'warning': 'alert'
-    };
+  function buildHtml(message) {
+    var noticeHtml = '<div class="alert ' +
+      msgObj[message.state] + '">' +
+      '<strong>' + message.info + '</strong>' +
+      '<button type="button" class="close">×</button>' +
+    '</div>';
+    return noticeHtml;
+  }
 
-    function buildHtml(message) {
-      var noticeHtml = '<div class="alert ' +
-                          msgObj[message.state] + '">' +
-                          '<strong>' + message.info + '</strong>' +
-                          '<button type="button" class="close">×</button>' +
-                        '</div>';
-      return noticeHtml;
-    }
-
+  function noticeDirective($rootScope, $location, $timeout) {
     return {
       restrict: 'EAC',
       replace: false,
@@ -49,4 +46,8 @@ angular.module('ntd.directives').directive('notice', [
       }
     };
   }
-]);
+  angular.module('ntd.directives').directive('notice', [
+    '$rootScope', '$location', '$timeout', 
+    noticeDirective
+  ]);
+}());
