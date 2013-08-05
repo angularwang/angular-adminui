@@ -125,7 +125,6 @@
         chosenEl.bind('liszt:hiding_dropdown', function(e) {
           if (!chosen.active_field && ng.isArray(initOptions)) {
             optionsModelSetter(scope, initOptions);
-            console.log('reset search');
             searchTxt.$search = '';
             searchTxt.$apply();
             $timeout(function() {
