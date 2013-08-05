@@ -45,8 +45,6 @@ angular.module('ntd.directives').directive('confirmButton', [
             element.addClass('disabled');
           }
 
-          // $('[id^="button-"]').closest('.popover').prev().removeClass('disabled');
-
           $('[id^="button-"]').closest('.popover').hide().prev().removeClass('disabled');
           element.popover('show');
           pop = $('#button-' + buttonId);
