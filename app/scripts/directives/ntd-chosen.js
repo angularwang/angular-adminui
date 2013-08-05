@@ -91,9 +91,6 @@
           var optionsModelGetter = $parse(optionsModelName);
           var optionsModelSetter = optionsModelGetter.assign;
           scope.$watch(optionsModelName, function(newValue, oldValue) {
-            if (onSearch && newValue) {
-              initOptions = newValue;
-            }
             chosenEl.trigger('liszt:data_loaded', {
               options: newValue,
               optionsModelName: optionsModelName
@@ -194,6 +191,9 @@
             chosen.search_field.removeClass('loading');
             // load new options
             if (ng.isArray(data.options) && data.options.length > 0) {
+              if (!initOptions) {
+                initOptions = data.options;
+              }
               optionsModelSetter(scope, data.options);
             } else {
               // show no results tip
