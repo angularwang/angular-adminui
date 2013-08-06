@@ -10,107 +10,14 @@
   angular.module('ntd.services', []).factory('flash', ['$rootScope', flashService]);
 }());
 
-/**! 
- * @license angular-flash v0.1.5
- * Copyright (c) 2013 William L. Bunselmeyer. https://github.com/wmluke/angular-flash
- * License: MIT
- */
-/* global angular */
 (function () {
   'use strict';
-  var Flash = function () {
-    var _self = this;
-    var _subscribers = [];
-    var _success;
-    var _info;
-    var _warn;
-    var _error;
-    var _type;
-    console.log(' flash message service ');
-    function _notify(type, message) {
-      angular.forEach(_subscribers, function (subscriber) {
-        if (!subscriber.type || subscriber.type === type) {
-          subscriber.cb(message, type);
-        }
-      });
-    }
-
-    this.clean = function () {
-      _subscribers = [];
-      _success = null;
-      _info = null;
-      _warn = null;
-      _error = null;
-      _type = null;
+  function flashMessageService($rootScope) {
+    return {
+      notify: function(message) {
+        $rootScope.$emit('event:flashMessageEvent', message);
+      }
     };
-
-    this.subscribe = function (subscriber, type) {
-      _subscribers.push({
-        cb: subscriber,
-        type: type
-      });
-    };
-
-    Object.defineProperty(this, 'success', {
-      get: function () {
-        return _success;
-      },
-      set: function (message) {
-        _success = message;
-        _type = 'success';
-        _notify(_type, message);
-      }
-    });
-
-    Object.defineProperty(this, 'info', {
-      get: function () {
-        return _info;
-      },
-      set: function (message) {
-        _info = message;
-        _type = 'info';
-        _notify(_type, message);
-      }
-    });
-
-    Object.defineProperty(this, 'warn', {
-      get: function () {
-        return _warn;
-      },
-      set: function (message) {
-        _warn = message;
-        _type = 'warn';
-        _notify(_type, message);
-      }
-    });
-
-    Object.defineProperty(this, 'error', {
-      get: function () {
-        return _error;
-      },
-      set: function (message) {
-        _error = message;
-        _type = 'error';
-        _notify(_type, message);
-      }
-    });
-
-    Object.defineProperty(this, 'type', {
-      get: function () {
-        return _type;
-      }
-    });
-
-    Object.defineProperty(this, 'message', {
-      get: function () {
-        return _type ? _self[_type] : null;
-      }
-    });
-  };
-
-  function flashProvider($rootScope) {
-    // $rootScope.emit('flashMessage', [1,2,3]);
-    return new Flash();
   }
-  angular.module('ntd.services').factory('flashMessage', ['$rootScope', flashProvider]);
+  angular.module('ntd.services').factory('flashMessage', ['$rootScope', flashMessageService]);
 }());

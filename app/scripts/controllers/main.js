@@ -331,34 +331,14 @@ adminuiApp
   })
 .controller('chosenCtrl', ['$scope', '$http', '$q', chosenCtrl])
 .controller('flashMessageCtrl', ['$scope', 'flashMessage', '$timeout', function($scope, flashMessage, $timeout){
-  $scope.all = function () {
-    $scope.info();
-    $scope.warn();
-    $scope.success();
-    $scope.error();
-  };
-  $scope.test = 'hello flash message';
-  $scope.info = function () {
-    flashMessage.info = 'info message';
-  };
+  var queue = [
+    {type: 'warn', message: 'warn message'},
+    {type: 'error', message: 'error message'}
+  ];
 
-  $scope.warn = function () {
-    flashMessage.warn = 'warn message';
-  };
-
-  $scope.success = function () {
-    flashMessage.success = 'success message';
-  };
-
-  $scope.error = function () {
-    flashMessage.error = 'error message';
-  };
-
-  $scope.clean = function() {
-
+  $scope.sendMsg = function(){
+    flashMessage.notify(queue);
   }
-
-  $scope.all();  
 }])
 ;
 
