@@ -11,7 +11,7 @@
       }
     };
   }
-  angular.module('ntd.services', []).factory('flash', 'flashMessage', ['$rootScope', flashService]);
+  angular.module('ntd.services', []).factory('flash', ['$rootScope', flashService]);
 }());
 
 (function () {
