@@ -10,16 +10,17 @@
       return html;
     }
     return {
+      restrict: 'EAC',
       scope: true,     
       link: function ($scope, element, attr) {
         var html_fragement = '', flag = false;
         $rootScope.$on('event:flashMessageEvent', function (event ,msg) {
           if(angular.isArray(msg)){
             angular.forEach(msg, function(item, key){
-              html_fragement += build_msg(item.type, item.message);
+              html_fragement += build_msg(item.status, item.info);
             });
           } else {
-            html_fragement += build_msg(item.type, item.message);
+            html_fragement += build_msg(msg.status, msg.info);
           }
         });
 
