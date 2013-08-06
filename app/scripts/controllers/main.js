@@ -1,5 +1,5 @@
 'use strict';
-
+/* for chosen */
 var chosenCtrl = function($scope, $http, $q) {
   $scope.options = this.getOptions();
   $scope.optionPromise = angular.bind(this, this.getOptionPromise, $http, $q);
@@ -39,7 +39,7 @@ chosenCtrl.prototype.getOptions = function() {
   ];
 };
 
-demoApp
+adminuiApp
   .controller('MainCtrl', ['$scope', '$window', '$location', function($scope, $window, $location){
     $scope.$location = $location;
     $scope.name = 'Nobody';
@@ -76,7 +76,7 @@ demoApp
     $scope.alert = {};
 }]);
 
-demoApp
+adminuiApp
   .controller('TabsDemoCtrl', function($scope){
     $scope.panes = [
       { title:'Dynamic Title 1', content:'Dynamic content 1' },
@@ -330,29 +330,33 @@ demoApp
     ];
   })
 .controller('chosenCtrl', ['$scope', '$http', '$q', chosenCtrl])
-.controller('flashMessageCtrl', ['$scope', 'flashMessage', '$timeout', function(){
+.controller('flashMessageCtrl', ['$scope', 'flashMessage', '$timeout', function($scope, flashMessage, $timeout){
   $scope.all = function () {
     $scope.info();
     $scope.warn();
     $scope.success();
     $scope.error();
   };
-
+  $scope.test = 'hello flash message';
   $scope.info = function () {
-      flashMessage.info = 'info message';
+    flashMessage.info = 'info message';
   };
 
   $scope.warn = function () {
-      flashMessage.warn = 'warn message';
+    flashMessage.warn = 'warn message';
   };
 
   $scope.success = function () {
-      flashMessage.success = 'success message';
+    flashMessage.success = 'success message';
   };
 
   $scope.error = function () {
-      flashMessage.error = 'error message';
+    flashMessage.error = 'error message';
   };
+
+  $scope.clean = function() {
+
+  }
 
   $scope.all();  
 }])

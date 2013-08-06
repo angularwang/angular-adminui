@@ -4,10 +4,53 @@
     </h1>
 </div>
 <h3>Flash alert</h3>
-<div flash-alert active-class="in" class="alert fade">
-    <strong class="alert-heading">{{flash.type}}</strong>
-    <span class="alert-message">{{flash.message}}</span>
-    <p>Works outside of controller scope</p>
+<div ng-controller="flashMessageCtrl">
+    <p>
+        <button class="btn btn-info" ng-click="info()"><i class="icon-info-sign"></i> Info</button>
+        <button class="btn btn-warning" ng-click="warn()"><i class="icon-warning-sign"></i> Warning</button>
+        <button class="btn btn-success" ng-click="success()"><i class="icon-ok-sign"></i> Success</button>
+        <button class="btn btn-danger" ng-click="error()"><i class="icon-exclamation-sign"></i> Error</button>
+        <button class="btn btn-primary" ng-click="all()"><i class="icon-flag"></i> All</button>
+    </p>
+    <div class="row-alert">
+        <div class="span12">
+            <div flash-alert="info" active-class="in alert" class="fade">
+                <i class="icon-info-sign"></i>
+                <strong class="alert-heading">Ahem...</strong>
+                <span class="alert-message">{{flashMessage.message}}</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="row-alert">
+        <div class="span12">
+            <div flash-alert="warn" active-class="in alert" class="fade">
+                <i class="icon-warning-sign"></i>
+                <strong class="alert-heading">Not so good.</strong>
+                <span class="alert-message">{{flash.message}}</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="row-alert">
+        <div class="span12">
+            <div flash-alert="success" active-class="in alert" class="fade">
+                <i class="icon-ok-sign"></i>
+                <strong class="alert-heading">Nice work!</strong>
+                <span class="alert-message">{{flash.message}}</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="row-alert">
+        <div class="span12">
+            <div flash-alert="error" active-class="in alert" class="fade">
+                <i class="icon-exclamation-sign"></i>
+                <strong class="alert-heading">Yikes!</strong>
+                <span class="alert-message">{{flash.message}}</span>
+            </div>
+        </div>
+    </div>
 </div>
 <h3>Field error</h3>
 <form name="myForm" ng-submit="save()">

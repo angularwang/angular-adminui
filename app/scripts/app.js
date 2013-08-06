@@ -1,8 +1,13 @@
 'use strict';
 
-var demoApp = angular.module('demoApp', ['ntd.services', 'ntd.directives', 'ui.bootstrap', 'bootstrapPrettify']);
+var adminuiApp = angular.module('adminuiApp',[
+  'ntd.services', 
+  'ntd.directives',
+  'ui.bootstrap',
+  'bootstrapPrettify'
+]);
 
-demoApp
+adminuiApp
   .config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {
     $routeProvider
       .when('/', {

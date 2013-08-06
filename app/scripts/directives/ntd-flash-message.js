@@ -13,7 +13,7 @@
     return (/^\s*$/).test(str);
   }
 
-  function flashAlertDirective(flash, $timeout) {
+  function flashAlertDirective(flashMessage, $timeout) {
     return {
       scope: true,
       link: function ($scope, element, attr) {
@@ -22,7 +22,7 @@
         $scope.flash = {};
 
         $scope.$on('$destroy', function () {
-          flash.clean();
+          flashMessage.clean();
         });
 
         function removeAlertClasses() {
@@ -56,18 +56,18 @@
           handle = $timeout(hide, 5000);
         }
 
-        flash.subscribe(show, attr.flashAlert);
+        flashMessage.subscribe(show, attr.flashAlert);
 
         /**
          * Fixes timing issues: display the last flash message sent before this directive subscribed.
          */
 
-        if (attr.flashAlert && flash[attr.flashAlert]) {
-          show(flash[attr.flashAlert], attr.flashAlert);
+        if (attr.flashAlert && flashMessage[attr.flashAlert]) {
+          show(flashMessage[attr.flashAlert], attr.flashAlert);
         }
 
-        if (!attr.flashAlert && flash.message) {
-          show(flash.message, flash.type);
+        if (!attr.flashAlert && flashMessage.message) {
+          show(flashMessage.message, flashMessage.type);
         }
       }
     };
