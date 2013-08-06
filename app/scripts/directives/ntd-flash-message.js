@@ -17,10 +17,10 @@
         $rootScope.$on('event:flashMessageEvent', function (event ,msg) {
           if(angular.isArray(msg)){
             angular.forEach(msg, function(item, key){
-              html_fragement += build_msg(item.status, item.info);
+              html_fragement += build_msg(item.state, item.info);
             });
           } else {
-            html_fragement += build_msg(msg.status, msg.info);
+            html_fragement += build_msg(msg.state, msg.info);
           }
         });
 
