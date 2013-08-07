@@ -1,22 +1,23 @@
 /* flash message */
-(function () {
+(function() {
   'use strict';
+  function build_msg(type, message) {
+    var html = '<div class="alert alert-' + type + '">' +
+        message +
+        '<button type="button" class="close">×</button>' +
+      '</div>';
+    return html;
+  }
+
   function flashAlertDirective(flashMessage, $rootScope, $timeout) {
-    function build_msg(type, message) {
-      var html = '<div class="alert alert-' + type + '">' +
-          message +
-          '<button type="button" class="close">×</button>' +
-        '</div>' ;
-      return html;
-    }
     return {
+      scope: true,
       restrict: 'EAC',
-      scope: true,     
-      link: function ($scope, element, attr) {
-        var html_fragement = '', flag = false;
-        $rootScope.$on('event:flashMessageEvent', function (event ,msg) {
-          if(angular.isArray(msg)){
-            angular.forEach(msg, function(item, key){
+      link: function($scope, element, attr) {
+        var html_fragement = '';
+        $rootScope.$on('event:flashMessageEvent', function(event, msg) {
+          if (angular.isArray(msg)) {
+            angular.forEach(msg, function(item, key) {
               html_fragement += build_msg(item.state, item.info);
             });
           } else {
@@ -25,12 +26,14 @@
         });
 
         $rootScope.$on('$routeChangeSuccess', function() {
-          if(html_fragement) {
+          if (html_fragement) {
             element.append(html_fragement);
             $('.close', element).bind('click', function() {
-              $(this).parent('.alert').remove();
+              $(this).parent('.alert').fadeOut(function() {
+                $(this).remove();
+              });
             });
-            html_fragement ='';
+            html_fragement = '';
           } else {
             element.empty();
           }

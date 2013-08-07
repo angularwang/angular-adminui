@@ -4,6 +4,7 @@
   function confirmButtonDirective($document, $parse) {
     return {
       restrict: 'A',
+      scope: '@',
       link: function(scope, element, attrs) {
         var buttonId, html, message, nope, title, yep, pos;
 
@@ -15,7 +16,7 @@
         title = attrs.title || '确认删除?';
         pos = attrs.position || 'top';
         html = '<div id=\"button-' + buttonId + '\">' +
-          '<span class=\"confirmbutton-msg\">' + message + '</span>' +
+          '<p ng-show="test" class=\"confirmbutton-msg\">' + message + '</p>' +
           '<button type=\"button\" class=\"confirmbutton-yes btn btn-primary\">' +
             yep +
           '</button>\n' +
