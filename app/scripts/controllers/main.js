@@ -78,10 +78,23 @@ adminuiApp
 
 adminuiApp
   .controller('TabsDemoCtrl', function($scope){
-    $scope.panes = [
-      { title:'Dynamic Title 1', content:'Dynamic content 1' },
-      { title:'Dynamic Title 2', content:'Dynamic content 2' }
+    $scope.tabs = [
+      { title:"Dynamic Title 1", content:"Dynamic content 1" },
+      { title:"Dynamic Title 2", content:"Dynamic content 2" }
     ];
+
+    $scope.alertMe = function() {
+      setTimeout(function() {
+        console.log($scope.tabs);
+        angular.forEach($scope.tabs, function(tab, key){
+          if (tab.active===true) {
+            console.log(key);
+          };
+        });
+      });
+    };
+
+    $scope.navType = 'pills';
   })
   .controller('TypeaheadCtrl', function($scope) {
     $scope.selected = undefined;
@@ -330,6 +343,19 @@ adminuiApp
     ];
   })
 .controller('chosenCtrl', ['$scope', '$http', '$q', chosenCtrl])
+.controller('switcherCtrl', ['$scope', function($scope) {
+  $scope.selected = true;
+  $scope.fn = function() {
+    console.log($scope.selected);
+    $scope.selected = $scope.selected === false ? true : false;
+    $scope.$apply();
+  };
+  $scope.do = function() {
+    console.log($scope.selected);
+    $scope.selected = $scope.selected === false ? true : false;
+    $scope.$apply();
+  };
+}])
 .controller('flashMessageCtrl', ['$scope', '$timeout', 'flashMessage', function($scope, $timeout, flashMessage){
   var queue = [
     {state: 'warn', info: 'warn message'},

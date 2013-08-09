@@ -7,9 +7,18 @@
 <h3>toggle swithers</h3>
 <p>开关组件， 添加<code>toggle-switcher</code>属性</p>
 <p><code>id</code>, <code>name</code>, <code>on-title</code>, <code>off-title</code>, <code>width</code>, <code>small-class</code>为可配置属性</p>
-<p>
-    <span toggle-switcher id="checkboxid" name="checkboxname" on-title="on" off-title="off" width="100px"></span>
-    <input type="button" class="btn" value="测试" >
+<p ng-controller="switcherCtrl">
+    <input type="button" class="btn" ng-click="do()" value="switcher" >
+    <span 
+        toggle-switcher
+        id="checkboxid"
+        name="checkboxname"
+        on-title="On"
+        off-title="Off"
+        width="100px"
+        ng-model="selected"
+        callback="fn">
+    </span>
 </p>
 <pre class="prettyprint linenums">
 &lt;div toggle-switcher id=&quot;checkboxid&quot; name=&quot;checkboxname&quot; on-title=&quot;on&quot; off-title=&quot;off&quot; width=&quot;100px&quot;&gt;&lt;/div&gt;
@@ -473,9 +482,13 @@ $scope.dptList = {{dptList|json}}
 </div>
 
 <h3>Easy Pie Chart</h3>
+<div>
+    <input type="text" ng-model="easyPieChart[0].percent">
+    <input type="text" ng-model="easyPieChart[0].usage">
+</div>
 <p><code>easy-pie-chart="item"</code> 属性来调用easy pie chart</p>
 <div class="row-fluid clearfix">
-    <div class="span2" ng-repeat="item in easyPieChart" >
+    <div class="span2" ng-repeat="item in easyPieChart">
         <div easy-pie-chart="item"></div>
     </div>
 </div>

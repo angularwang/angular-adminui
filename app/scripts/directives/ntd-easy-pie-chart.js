@@ -4,21 +4,28 @@
   function easyPieChartDirective($timeout) {
     return {
       restrict: 'A',
-      scope: { item: '=easyPieChart' },
+      scope: { 
+        item: '=easyPieChart'
+      },
       replace: true,
-      template: '<div class="easy-pie-chart">' +
-          '<div data-percent="{{item.percent}}">' +
-              '{{item.usage}}' +
-          '</div>' +
-          '<div class="caption">' +
-              '{{item.caption}}' +
-          '</div>' +
+      template: '<div class="easy-pie-chart-widget">' +
+        '<div class="easy-pie-chart">' +
+          '<div class="percentage" data-percent="{{item.percent}}">{{item.usage}}</div>' +
+          '<div>{{item.caption}}</div>' +
+        '</div>' +
       '</div>',
 
       link: function(scope, element, attrs) {
-        var colorRange = ['#08c', '#e7912a', '#bacf0b',
-                          '#4ec9ce', '#ec7337', '#f377ab'];
-        var lineWidth = attrs.easyPieChartLineWidth || 12,
+        var colorRange = [
+              '#08c',
+              '#e7912a',
+              '#bacf0b',
+              '#4ec9ce',
+              '#ec7337',
+              '#f377ab'
+            ],
+
+            lineWidth = attrs.easyPieChartLineWidth || 12,
             size = attrs.easyPieChartSize || 100,
             barColor = colorRange[scope.$parent.$index % 6] || '#08c',
 
@@ -33,10 +40,17 @@
             },
 
             render_easy_pie_chart = function() {
-              $(angular.element(element.children()[0])).easyPieChart(options);
+              $('.percentage ', element).easyPieChart(options);
             };
-          $(element).parent().addClass('easy-pie-chart-widget');
+
           attrs.$observe('easyPieChart', render_easy_pie_chart);
+          scope.$watch('item', function(newValue, oldValue){
+            if(newValue != oldValue) {
+              $('.percentage ', element)
+                .data('easyPieChart')
+                .update(newValue.percent);
+            }
+          }, true);
       }
     };
   }
