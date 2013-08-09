@@ -346,14 +346,11 @@ adminuiApp
 .controller('switcherCtrl', ['$scope', function($scope) {
   $scope.selected = true;
   $scope.fn = function() {
-    console.log($scope.selected);
-    $scope.selected = $scope.selected === false ? true : false;
-    $scope.$apply();
+    $scope.selected = !$scope.selected ;
+    console.log('fn ',$scope.selected);
   };
   $scope.do = function() {
-    console.log($scope.selected);
-    $scope.selected = $scope.selected === false ? true : false;
-    $scope.$apply();
+    $scope.selected = !$scope.selected ;
   };
 }])
 .controller('flashMessageCtrl', ['$scope', '$timeout', 'flashMessage', function($scope, $timeout, flashMessage){

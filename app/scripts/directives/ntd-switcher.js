@@ -1,6 +1,6 @@
 'use strict';
 (function(){
-  function toggleSwitcherDirective($compile) {
+  function toggleSwitcherDirective($scope, $compile) {
       return {
       restrict: 'AC',
       replace: true,
@@ -23,15 +23,10 @@
         '<a class="btn slide-button"></a>' +
       '</label>',
       link: function(scope, element, attrs) {
-
         element.bind('click', function(event) {
           if (event.target.nodeName.toLowerCase() === 'input') {
             scope.callback();
-          }
-        });
-        scope.$watch('checked', function(newValue, oldValue) {
-          if(newValue) {
-            // scope.checked = newValue;
+            scope.$apply();
           }
         });
       }
