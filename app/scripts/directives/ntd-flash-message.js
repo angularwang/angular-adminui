@@ -26,6 +26,8 @@
         });
 
         $rootScope.$on('$routeChangeSuccess', function() {
+          // remove old message when route changed
+          element.empty();
           if (html_fragement) {
             element.append(html_fragement);
             $('.close', element).bind('click', function() {
@@ -34,8 +36,6 @@
               });
             });
             html_fragement = '';
-          } else {
-            element.empty();
           }
         });
       }
