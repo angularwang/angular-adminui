@@ -12,7 +12,7 @@
         id: '@',
         name: '@',
         checked: '=ngModel',
-        callback: '='
+        callback: '&'
       },
       template: '<label class="checkbox toggle {{smallClass}}" style="width:{{width}};">' +
         '<input id="{{id}}" name="{{name}}" type="checkbox" ng-checked="checked">' +
@@ -25,7 +25,7 @@
       link: function(scope, element, attrs) {
         element.bind('click', function(event) {
           if (event.target.nodeName.toLowerCase() === 'input') {
-            scope.callback();
+            scope.callback(scope);
             scope.$apply();
           }
         });
