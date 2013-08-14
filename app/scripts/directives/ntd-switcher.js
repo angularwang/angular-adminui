@@ -55,8 +55,8 @@
           }
         });
         scope.$watch('ngModel', function(value, oldValue) {
+          scope.checked = (value === trueValue) ? true : false;
           if (value !== oldValue) {
-            scope.checked = (value === trueValue) ? true : false;
             eventModel.$event = {
               data: {
                 value: value,
