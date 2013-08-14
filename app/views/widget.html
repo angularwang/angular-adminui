@@ -16,7 +16,7 @@
     <code>ng-model</code>, 
     <code>ng-click</code>, 
     <code>ng-change</code>, 
-    <code>ng-disable</code>, 
+    <code>ng-disabled</code>, 
     <code>class</code>
     为可配置属性
 </p>
@@ -37,8 +37,7 @@
     <span>{{opened}}</span>
 </p>
 <pre class="prettyprint linenums">
-&lt;span 
-    toggle-switcher
+&lt;span toggle-switcher
     id=&quot;checkboxid&quot;
     name=&quot;checkboxname&quot;
     ng-true-title=&quot;开启状态&quot;
@@ -66,13 +65,13 @@
     <span>{{selected}}</span>
 </p>
 <pre class="prettyprint linenums">
-&lt;span 
-    toggle-switcher
+&lt;span toggle-switcher
     id=&quot;checkboxid&quot;
     name=&quot;checkboxname&quot;
     ng-true-title=&quot;On&quot;
     ng-false-title=&quot;Off&quot;
     ng-model=&quot;selected&quot;
+    ng-disabled=&quot;switchDisabled&quot;
     class=&quot;small&quot;&gt;
 &lt;/span&gt;
 </pre>
