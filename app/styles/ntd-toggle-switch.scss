@@ -308,4 +308,10 @@ https://github.com/ghinda/css-toggle-switch
         }
     }
 }
+
+.toggle.disabled {
+    input:checked ~ p > span:first-child {
+        color: #999;
+    } 
+}
 }
