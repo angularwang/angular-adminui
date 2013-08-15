@@ -9,7 +9,7 @@
     return html;
   }
 
-  function flashAlertDirective(flashMessage, $rootScope, $timeout) {
+  function flashAlertDirective($rootScope, $timeout) {
     return {
       scope: true,
       restrict: 'EAC',
@@ -43,7 +43,6 @@
   }
 
   angular.module('ntd.directives').directive('flashAlert', [
-    'flashMessage',
     '$rootScope',
     '$timeout',
     flashAlertDirective
