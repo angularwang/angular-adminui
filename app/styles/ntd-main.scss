@@ -60,7 +60,10 @@ form {
         display: inline-block;
     }
     &.form-horizontal {
-
+        .control-text {
+            margin-bottom: 5px;
+            padding-top: 5px;
+        }
         .help-block {
             margin-top: 10px;
         }
