@@ -39,7 +39,7 @@
         });
         
         scope.$watch(function() {
-          return $location.path();
+          return $location.url();
         }, function() {
             element.fadeOut();
         });
