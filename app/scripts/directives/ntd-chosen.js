@@ -262,6 +262,8 @@
       template: '<span><span' +
       ' data-ng-repeat="linkage in linkages">' +
       ' <select data-ntd-chosen' +
+      ' data-placeholder="请选择"' +
+      ' data-disable-search-threshold="10"' +
       ' data-ng-change="change($index)"' +
       ' data-ng-model="values[$index]"' +
       ' data-allow-single-deselect="true"' +
@@ -271,8 +273,7 @@
       '</select></span></span>',
       scope: {
         source: '=',
-        ngModel: '=',
-        placeHolders: '='
+        ngModel: '='
       },
       link: function(scope, elem, attrs) {
         var baseLevels;
