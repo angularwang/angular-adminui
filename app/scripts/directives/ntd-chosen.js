@@ -38,6 +38,8 @@
         };
         var chosenEl = elem.chosen(options);
         var chosen = chosenEl.data('chosen');
+        // fix for responsive
+        chosen.container.css('max-width', chosenEl.css('width'));
         var selected_options = {};
         var searchTxt = scope.$new(false);
 
