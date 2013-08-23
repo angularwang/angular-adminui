@@ -21,7 +21,8 @@
       replace: true,
       scope: {
         tags: '=ngModel',
-        placeholder: '@'
+        placeholder: '@',
+        id: '@'
       },
       template: '<div class="tag-input-container">' +
       '<ul data-ng-class="{true: \'focus\'}[isFocus]">' +
@@ -30,7 +31,7 @@
       '<i data-ng-click="remove($index)" class="icon-remove"></i>' +
       '</li>' +
       '<li class="input-li">' +
-      '<input data-ng-model="tagInput"' +
+      '<input id="{{id}}" data-ng-model="tagInput"' +
       ' placeholder="{{placeholder}}" type="text" autocomplete="false" />' +
       '</li>' +
       '</ul>' +
